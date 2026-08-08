@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>WeatherWise</title>
+    <link rel="icon" type="image/png" href="weather_icon.png">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <div class="app">
+
+
+        <!-- =========================
+             LEFT SIDEBAR
+        ========================== -->
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                WeatherWise
+            </div>
+
+
+            <div class="sidebar-line"></div>
+
+
+            <!-- Status -->
+
+            <div class="side-section">
+
+                <span class="side-label">
+                    Status
+                </span>
+
+                <div class="status-card">
+
+                    <div class="status-number">
+                        <span id="statusArrow">↑</span>
+                        <span id="statusValue">--%</span>
+                    </div>
+
+                    <div class="status-chart">
+
+                        <div class="chart-line"></div>
+
+                        <div class="chart-dot"></div>
+
+                    </div>
+
+                    <span class="status-badge">
+                        Normal
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Details -->
+
+            <div class="side-section">
+
+                <span class="side-label">
+                    Conditions
+                </span>
+
+
+                <div class="side-info">
+
+                    <span>💧</span>
+
+                    <div>
+                        <small>Humidity</small>
+                        <strong id="sideHumidity">
+                            --%
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="side-info">
+
+                    <span>💨</span>
+
+                    <div>
+                        <small>Wind</small>
+                        <strong id="sideWind">
+                            -- km/h
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="side-info">
+
+                    <span>🌡️</span>
+
+                    <div>
+                        <small>Feels like</small>
+                        <strong id="sideFeels">
+                            --°
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Search -->
+
+            <div class="side-search">
+
+                <span class="side-label">
+                    Search Area
+                </span>
+
+                <div class="search-mini">
+
+                    <input
+                        type="text"
+                        id="cityInput"
+                        placeholder="Search city..."
+                    >
+
+                    <button onclick="getWeather()">
+                        🔍
+                    </button>
+
+                </div>
+
+            </div>
+
+
+        </aside>
+
+
+
+        <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+
+        <main class="main">
+
+
+            <!-- TOP BAR -->
+
+            <header class="topbar">
+
+                <div class="location">
+
+                    <span class="location-icon">
+                        📍
+                    </span>
+
+                    <span id="cityName">
+                        Search for a city
+                    </span>
+
+                    <span class="country">
+                        Weather
+                    </span>
+
+                </div>
+
+
+                <div class="top-actions">
+
+                    <button class="round-button">
+                        🔍
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ERROR -->
+
+            <p id="error"></p>
+
+
+
+            <!-- HERO WEATHER -->
+
+            <section class="hero">
+
+
+                <div class="hero-main">
+
+                    <div class="temperature-row">
+
+                        <span
+                            id="temperature"
+                            class="temperature"
+                        >
+                            --°
+                        </span>
+
+
+                        <div class="high-low">
+
+                            <span>
+                                H
+                                <strong id="highTemp">
+                                    --°
+                                </strong>
+                            </span>
+
+                            <span>
+                                L
+                                <strong id="lowTemp">
+                                    --°
+                                </strong>
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="weather-description">
+
+                        <img
+                            id="weatherIcon"
+                            src="https://openweathermap.org/img/wn/01d@2x.png"
+                            alt="Weather"
+                        >
+
+                        <div>
+
+                            <h1 id="description">
+                                Search for a city
+                            </h1>
+
+                            <p>
+                                Current weather conditions
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- WEATHER SUMMARY -->
+
+                <div class="weather-summary">
+
+                    <div class="summary-card">
+
+                        <span>Feels like</span>
+
+                        <strong id="feelsLike">
+                            --°
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>Humidity</span>
+
+                        <strong id="humidity">
+                            --%
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-card">
+
+                        <span>Wind</span>
+
+                        <strong id="wind">
+                            -- km/h
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- FORECAST -->
+
+            <section class="forecast-section">
+
+                <div class="forecast-header">
+
+                    <h2>
+                        Forecast
+                    </h2>
+
+                    <span>
+                        Next 5 days
+                    </span>
+<div id="forecastContainer" class="forecast-container"></div>
+                </div>
+
+
+                <div
+                    id="forecast"
+                    class="forecast-container"
+                >
+
+                    <!-- JS creates forecast here -->
+
+                </div>
+
+
+                <!-- GRAPH -->
+
+                <div class="temperature-graph">
+
+                    <svg
+                        viewBox="0 0 1000 180"
+                        preserveAspectRatio="none"
+                    >
+
+                        <path
+                            class="graph-line"
+                            d="M0,120
+                               C80,160 130,60 210,100
+                               S340,160 420,80
+                               S560,30 630,80
+                               S750,130 820,70
+                               S930,40 1000,90"
+                        />
+
+                    </svg>
+
+                </div>
+
+            </section>
+
+
+        </main>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
