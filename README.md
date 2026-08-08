@@ -65,7 +65,7 @@ git clone https://github.com/vishwakarmasneha846-max/WeatherWise
 
 ## 🌐 Live Demo
 
-Coming Soon...
+[View WeatherWise Live](https://vishwakarmasneha846-max.github.io/WeatherWise/)
 
 ---
 
