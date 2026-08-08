@@ -1,5 +1,3 @@
-# WeatherWise
-Know the sky before you step outside. Get fast local forecasts, live rain tracking, and severe weather alerts right on your phone.
 # 🌦️ WeatherWise
 
 A modern and responsive Weather App built using **HTML, CSS, and JavaScript**. This project displays current weather conditions and a 5-day forecast for any searched city using the **OpenWeatherMap API**.
