@@ -8,10 +8,6 @@ A modern and responsive Weather App built using **HTML, CSS, and JavaScript**. T
 
 ![alt text](image.png)
 
-Example:
-
-![WeatherWise Screenshot](WeatherWise.png)
-
 ---
 
 ## 🚀 Features
